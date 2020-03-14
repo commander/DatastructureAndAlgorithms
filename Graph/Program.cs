@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Graph
 {
@@ -88,6 +89,8 @@ namespace Graph
             // Is the graph BiPartie
             TwoColor tw = new TwoColor(g);
             Console.WriteLine("Graph is {0}", tw.IsBiPartie ? "BiPartie" : "not BiPartie");
+
+            PrintSymbolGraph();
         }
 
         static void PrintPaths(Paths search, Graph g, int source)
@@ -142,5 +145,30 @@ namespace Graph
                 Console.WriteLine();
             }
         }
+
+        private static void PrintSymbolGraph()
+        {
+            string fileName = @"C:\Users\Ashish Sheth\Documents\Ashish\practice\DatasctructureAndAlgorithms\DatastructureAndAlgorithms\routes.txt";
+
+            var lines = File.ReadAllLines(fileName);
+
+            SymbolGraph sg = new SymbolGraph(lines, " ");
+
+            Graph g = sg.Graph;
+
+            Console.WriteLine("Enter the source airport. Type exit to exit: ");
+            string source = Console.ReadLine();
+            while(source != "exit" || source != string.Empty)
+            {
+                int s = sg.IndexOf(source);
+                foreach(int v in g.GetAdjacencyList(s))
+                {
+                    Console.WriteLine("   " + sg.NameOf(v));
+                }
+                Console.WriteLine("Enter the source airport. Type exit to exit: ");
+                source = Console.ReadLine();
+            }
+        }
     }
+
 }
