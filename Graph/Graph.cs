@@ -48,7 +48,7 @@ namespace Graph
             return this.adjacencyLists[v];
         }
 
-        private void AddEdge(int from, int to)
+        public void AddEdge(int from, int to)
         {
             if(this.adjacencyLists[from] == null)
             {
