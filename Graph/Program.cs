@@ -14,17 +14,17 @@ namespace Graph
             edges.Add(new int[] { 2, 3 });
             edges.Add(new int[] { 1, 2 });
             edges.Add(new int[] { 0, 1 });
-            edges.Add(new int[] { 3, 4 });
-            edges.Add(new int[] { 3, 5 });
-            edges.Add(new int[] { 0, 2 });
+            //edges.Add(new int[] { 3, 4 });
+            //edges.Add(new int[] { 3, 5 });
+            //edges.Add(new int[] { 0, 2 });
             //edges.Add(new int[] { 6, 7 });
             //edges.Add(new int[] { 1, 7 });
             edges.Add(new int[] { 7, 8 });
             edges.Add(new int[] { 9, 10 });
             edges.Add(new int[] { 9, 11 });
             edges.Add(new int[] { 9, 12 });
-            edges.Add(new int[] { 11, 12 });
-            edges.Add(new int[] { 0, 2 });
+            //edges.Add(new int[] { 11, 12 });
+            //edges.Add(new int[] { 0, 2 });
 
             int v = 13;
             Graph g = new Graph(v, edges);
@@ -80,6 +80,10 @@ namespace Graph
             //        Console.WriteLine("To: {0}", i);
             //    }
             //}
+
+            // Does G has cycles
+            Cycle c = new Cycle(g);
+            Console.WriteLine("Has Cycle {0}", c.HasCycle);
         }
 
         static void PrintPaths(Paths search, Graph g, int source)
