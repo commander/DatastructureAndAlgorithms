@@ -17,10 +17,16 @@ namespace Graph
             edges.Add(new int[] { 3, 4 });
             edges.Add(new int[] { 3, 5 });
             edges.Add(new int[] { 0, 2 });
-            edges.Add(new int[] { 6, 7 });
-            edges.Add(new int[] { 1, 7 });
+            //edges.Add(new int[] { 6, 7 });
+            //edges.Add(new int[] { 1, 7 });
+            edges.Add(new int[] { 7, 8 });
+            edges.Add(new int[] { 9, 10 });
+            edges.Add(new int[] { 9, 11 });
+            edges.Add(new int[] { 9, 12 });
+            edges.Add(new int[] { 11, 12 });
+            edges.Add(new int[] { 0, 2 });
 
-            int v = 8;
+            int v = 13;
             Graph g = new Graph(v, edges);
 
             //for (int i = 0; i < v; i++)
@@ -63,6 +69,8 @@ namespace Graph
 
             BreathFirstPaths bfp = new BreathFirstPaths(g, source);
             PrintPaths(bfp, g, source);
+
+            PrintConnectedComponents(g);
             //IEnumerable<int> breathPathTo5 = bfp.PathTo(4);
 
             //if (breathPathTo5 != null)
@@ -93,6 +101,36 @@ namespace Graph
                         }
                     }
                 }
+                Console.WriteLine();
+            }
+        }
+
+        static void PrintConnectedComponents(Graph g)
+        {
+            ConnectedComponent cc = new ConnectedComponent(g);
+            int m = cc.Count;
+
+            Console.WriteLine("{0} Components.", m);
+
+            Queue<int>[] components = new Queue<int>[m];
+
+            for(int i = 0; i < m; i++)
+            {
+                components[i] = new Queue<int>();
+            }
+
+            for(int v = 0; v < g.V; v++)
+            {
+                components[cc.Id(v)].Enqueue(v);
+            }
+
+            for(int i = 0; i < m; i++)
+            {
+                foreach(int v in components[i])
+                {
+                    Console.Write(v + " ");
+                }
+
                 Console.WriteLine();
             }
         }

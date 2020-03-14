@@ -48,10 +48,10 @@ namespace Graph
             return path;
         }
 
-        public bool Marked(int v)
-        {
-            return this.marked[v];
-        }
+        //public bool Marked(int v)
+        //{
+        //    return this.marked[v];
+        //}
 
         private void Bfs(Graph g, int s)
         {
