@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Graph": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Users\\Ashish Sheth\\Documents\\Ashish\\practice\\DatasctructureAndAlgorithms\\DatastructureAndAlgorithms\\tinyDG.txt\" 12"
+    }
+  }
+}
