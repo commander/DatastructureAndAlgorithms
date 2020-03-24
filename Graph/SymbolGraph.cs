@@ -19,7 +19,7 @@ namespace Graph
             this.st = new Dictionary<string, int>();
             foreach(string line in lines)
             {
-                string[] words = line.Split(' ');
+                string[] words = line.Split(sp);
                 for(int i = 0; i < words.Length; i++)
                 {
                     if(!st.ContainsKey(words[i]))
@@ -39,12 +39,13 @@ namespace Graph
 
             foreach (string line in lines)
             {
-                string[] words = line.Split(' ');
+                string[] words = line.Split(sp);
                 int v = st[words[0]];
 
                 for(int i = 1; i < words.Length; i++)
                 {
                     this.Graph.AddEdge(v, st[words[i]]);
+                    this.Graph.AddEdge(st[words[i]], v);
                 }
             }
         }

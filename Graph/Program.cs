@@ -90,7 +90,8 @@ namespace Graph
             TwoColor tw = new TwoColor(g);
             Console.WriteLine("Graph is {0}", tw.IsBiPartie ? "BiPartie" : "not BiPartie");
 
-            PrintSymbolGraph();
+            //PrintSymbolGraph();
+            PrintDegreesOfSeparation();
         }
 
         static void PrintPaths(Paths search, Graph g, int source)
@@ -158,7 +159,7 @@ namespace Graph
 
             Console.WriteLine("Enter the source airport. Type exit to exit: ");
             string source = Console.ReadLine();
-            while(source != "exit" || source != string.Empty)
+            while(source != "exit" || string.IsNullOrEmpty(source))
             {
                 int s = sg.IndexOf(source);
                 foreach(int v in g.GetAdjacencyList(s))
@@ -166,6 +167,68 @@ namespace Graph
                     Console.WriteLine("   " + sg.NameOf(v));
                 }
                 Console.WriteLine("Enter the source airport. Type exit to exit: ");
+                source = Console.ReadLine();
+            }
+        }
+
+        private static void PrintDegreesOfSeparation()
+        {
+            Console.WriteLine("Enter file path: ");
+
+            string fileName = Console.ReadLine(); //@"C:\Users\Ashish Sheth\Documents\Ashish\practice\DatasctructureAndAlgorithms\DatastructureAndAlgorithms\movies.txt";
+            var lines = File.ReadAllLines(fileName);
+
+            Console.WriteLine("Enter separator: ");
+            string separator = Console.ReadLine();
+            SymbolGraph sg = new SymbolGraph(lines, separator);
+
+            Graph g = sg.Graph;
+
+            Console.WriteLine("Enter the source. Type exit to exit: ");
+            string source = Console.ReadLine();
+            while (source != "exit" || string.IsNullOrWhiteSpace(source))
+            {
+                if (!sg.Contains(source))
+                {
+                    Console.WriteLine("{0} not in database", source);
+                    continue;
+                }
+
+                int s = sg.IndexOf(source);
+
+                BreathFirstPaths bfp = new BreathFirstPaths(g, s);
+
+                Console.WriteLine("Enter the destination. Type exit to exit: ");
+                string sink = Console.ReadLine();
+
+                while(sink != "exit" || string.IsNullOrWhiteSpace(sink))
+                {
+                    if (sg.Contains(sink))
+                    {
+                        int t = sg.IndexOf(sink);
+
+                        if (bfp.HasPathTo(t))
+                        {
+                            foreach(int v in bfp.PathTo(t))
+                            {
+                                Console.WriteLine(" {0}", sg.NameOf(v));
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Not Connected");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Not in database");
+                    }
+
+                    Console.WriteLine("Enter the destination. Type exit to exit: ");
+                    sink = Console.ReadLine();
+                }
+
+                Console.WriteLine("Enter the source. Type exit to exit: ");
                 source = Console.ReadLine();
             }
         }
