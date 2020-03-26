@@ -72,42 +72,10 @@ namespace Graph
         public static void Main(string[] args)
         {
             string fileName = args[0];
-            string[] lines = File.ReadAllLines(fileName);
 
-            int v = int.Parse(lines[0].Trim());
-            int e = int.Parse(lines[1].Trim());
-
-            List<int[]> edges = new List<int[]>();
-
-            for (int i = 2; i < lines.Length; i++)
-            {
-                string[] points = lines[i].Trim().Split(' ');
-                edges.Add(new int[] { int.Parse(points[0].Trim()), int.Parse(points[1].Trim()) });
-            }
-
-            //List<int[]> edges = new List<int[]>();
-            //int vCount;
-            //int eCount;
-            //FileStream fs = File.OpenRead(fileName);
-            //using (BinaryReader bs = new BinaryReader(fs))
-            //{
-
-            //    vCount = bs.ReadInt32();
-            //    eCount = bs.ReadInt32();
-
-            //    edges = new List<int[]>();
-
-            //    for (int i = 0; i < eCount; i++)
-            //    {
-            //        int v = bs.ReadInt32();
-            //        int w = bs.ReadInt32();
-            //        //string[] points = lines[i].Trim().Replace("  ", " ").Split(' ');
-            //        //edges.Add(new int[] { int.Parse(points[0].Trim()), int.Parse(points[1].Trim()) });
-            //        edges.Add(new int[] { v, w });
-            //    }
-            //}
-            //fs.Close();
-            Digraph dg = new Digraph(v, edges);
+            var vAndE = FileReader.Read(fileName);
+            
+            Digraph dg = new Digraph(vAndE.Item1, vAndE.Item2);
 
             List<int> sources = new List<int>();
 

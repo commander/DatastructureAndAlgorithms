@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <StartupObject>Graph.NonRecursiveDirectedDepthFirstSearch</StartupObject>
+    <StartupObject>Graph.BreathFirstDirectedPaths</StartupObject>
   </PropertyGroup>
 
 </Project>
