@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Graph
 {
-    public class DepthFirstDirectedPaths : DirectedPaths
+    public class NonRecursiveDepthFirstDirectedPaths : DirectedPaths
     {
-        public DepthFirstDirectedPaths(Digraph g, int s) : base(g, s)
+        public NonRecursiveDepthFirstDirectedPaths(Digraph g, int s) : base(g, s)
         {
             this.marked = new bool[g.V];
             this.edgeTo = new int[g.V];
@@ -16,13 +16,35 @@ namespace Graph
         private void Dfs(Digraph g, int s)
         {
             this.marked[s] = true;
-            this.Count++;
-            foreach (int v in g.GetAdjacencyList(s))
+            var adjEnumerators = new IEnumerator<int>[g.V];
+
+            for (int v = 0; v < g.V; v++)
             {
-                if (!marked[v])
+                adjEnumerators[v] = g.GetAdjacencyList(v).GetEnumerator();
+            }
+
+            Stack<int> stack = new Stack<int>();
+
+            stack.Push(s);
+
+            while (stack.Count != 0)
+            {
+                int current = stack.Peek();
+
+                if (adjEnumerators[current].MoveNext())
                 {
-                    this.edgeTo[v] = s;
-                    Dfs(g, v);
+                    int w = adjEnumerators[current].Current;
+
+                    if (!this.marked[w])
+                    {
+                        this.marked[w] = true;
+                        this.edgeTo[w] = current;
+                        stack.Push(w);
+                    }
+                }
+                else
+                {
+                    stack.Pop();
                 }
             }
         }
@@ -37,7 +59,7 @@ namespace Graph
 
             int s = int.Parse(args[1]);
 
-            DepthFirstDirectedPaths ddfp = new DepthFirstDirectedPaths(dg, s);
+            var ddfp = new NonRecursiveDepthFirstDirectedPaths(dg, s);
 
             for(int v = 0; v < dg.V; v++)
             {
