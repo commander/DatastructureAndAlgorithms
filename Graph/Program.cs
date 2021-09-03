@@ -15,17 +15,20 @@ namespace Graph
             edges.Add(new int[] { 2, 3 });
             edges.Add(new int[] { 1, 2 });
             edges.Add(new int[] { 0, 1 });
-            edges.Add(new int[] { 3, 4 });
-            edges.Add(new int[] { 3, 5 });
+            //edges.Add(new int[] { 3, 4 });
+            //edges.Add(new int[] { 3, 5 });
             edges.Add(new int[] { 0, 2 });
-            //edges.Add(new int[] { 6, 7 });
-            //edges.Add(new int[] { 1, 7 });
+            edges.Add(new int[] { 6, 7 });
+            //edges.Add(new int[] { 6, 10 });
+            edges.Add(new int[] { 1, 7 });
             edges.Add(new int[] { 7, 8 });
+            edges.Add(new int[] { 8, 10 });
             edges.Add(new int[] { 9, 10 });
             edges.Add(new int[] { 9, 11 });
             edges.Add(new int[] { 9, 12 });
-            edges.Add(new int[] { 11, 12 });
-            edges.Add(new int[] { 0, 2 });
+            //edges.Add(new int[] { 10, 12 });
+            //edges.Add(new int[] { 11, 12 });
+            //edges.Add(new int[] { 0, 2 });
 
             int v = 13;
             Graph g = new Graph(v, edges);
@@ -48,6 +51,10 @@ namespace Graph
 
             //Console.WriteLine("Starting Depth first search for path from {0} to 4.", source);
 
+            Console.WriteLine("===========================================================");
+            Console.WriteLine("================ Depth First Search for Paths ============");
+            Console.WriteLine("===========================================================");
+
             Paths dfp = new DepthFirstPaths(g, source);
             PrintPaths(dfp, g, source);
             //IEnumerable<int> pathTo5 = dfp.PathTo(4);
@@ -64,6 +71,13 @@ namespace Graph
             //{
             //    Console.WriteLine("Does {2} connect to {1}: {0}", dfp.HashPathTo(i), i, source);
             //}
+            Console.WriteLine("===========================================================");
+            Console.WriteLine("================ Breath First Search ============");
+            Console.WriteLine("===========================================================");
+            BreathFirstSearch bfs = new BreathFirstSearch(g, source);
+            Console.WriteLine("Bfs Count: {0}", bfs.Count);
+
+
             Console.WriteLine("===========================================================");
             Console.WriteLine("================ Breath First Search for Paths ============");
             Console.WriteLine("===========================================================");

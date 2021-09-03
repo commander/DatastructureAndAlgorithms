@@ -2,7 +2,7 @@
   "profiles": {
     "Graph": {
       "commandName": "Project",
-      "commandLineArgs": "\"C:\\Users\\Ashish Sheth\\Documents\\Ashish\\practice\\DatasctructureAndAlgorithms\\DatastructureAndAlgorithms\\largeDG.txt\" 7"
+      "commandLineArgs": "\"C:\\Users\\Ashish Sheth\\Documents\\Ashish\\Practise\\DatasctructureAndAlgorithms\\DatastructureAndAlgorithms\\largeDG.txt\" 7"
     }
   }
 }
